@@ -1,0 +1,49 @@
+﻿@model ISD.Sitefinity.Web.District.Mvc.Models.YouTubeVideoModel
+
+<div class="sf-widget youtube-video">
+    @if (Model.WidgetType == ISD.Sitefinity.Models.YouTube.YouTubeWidgetType.List)
+    {
+        foreach (var video in Model.Videos)
+        {
+            <div class="video-item">
+                @*<div class="video-image" style="background-image:url(@video.ThumbnailUrl)">
+                    </div>*@
+                <div class="ytImgWrapper">
+                    <div class="ytImgThumbBox">
+                        <img src="@video.ThumbnailUrl" class="ytImgThumbImg" alt="text">
+                        <span>@video.Duration</span>
+
+                    </div>
+                </div>
+                <div class="video-details">
+                    <div>
+                        <a href="https://www.youtube.com/watch?v=@video.VideoId" target="_blank" rel="noreferrer noopener">@video.Title</a>
+                        <span>@video.Description.TruncateString(80, SitefinityExtensions.TruncateOptions.IncludeEllipsis)</span>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else if (Model.WidgetType == ISD.Sitefinity.Models.YouTube.YouTubeWidgetType.Single)
+    {
+
+        var video = Model.Videos.FirstOrDefault();
+
+        <div class="video-item-single">
+            <div class="ytImgThumbBox-single">
+                <img class="ytImgThumbImg-single" src="@video.ThumbnailUrl" />
+                <a href="https://www.youtube.com/watch?v=@video.VideoId" class="ytimage-mask" target="_blank" rel="noreferrer noopener"></a>
+                <a a href="https://www.youtube.com/watch?v=@video.VideoId" class="play-arrow" target="_blank" rel="noreferrer noopener"></a>
+                <span>@video.Duration</span>
+            </div>
+            <div class="ytDetails-single">
+                <a href="https://www.youtube.com/watch?v=@video.VideoId" target="_blank" rel="noreferrer noopener">@video.Title</a>
+                <span class="ytdetail-text">@video.Description.TruncateString(80, SitefinityExtensions.TruncateOptions.IncludeEllipsis)</span>
+                @if (video.PublishedAt != null)
+                {
+                    <span>Posted @video.PublishedAt.Value.ToString("M"), @video.PublishedAt.Value.Year</span>
+                }
+            </div>
+        </div>
+    }
+</div>

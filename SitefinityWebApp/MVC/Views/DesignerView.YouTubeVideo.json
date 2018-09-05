@@ -1,0 +1,9 @@
+﻿{
+  "priority": 1,
+  "scripts": [
+    "Mvc/Scripts/designerview-youtubevideo.js"
+  ],
+  "components": [
+    "sf-services"
+  ]
+}

@@ -1,0 +1,53 @@
+﻿<div class="form-group">
+    <div>
+        <label for="channelID">Channel ID:</label>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <input type="text" id="channelID" ng-change="updateDropDowns()" ng-model="properties.ChannelID.PropertyValue" class="form-control" />
+        </div>
+    </div>
+    <div>
+        <label for="newsLists">Widget Type:</label>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <select id="widgetType" ng-disabled="!properties.ChannelID.PropertyValue.length" ng-change="updateDropDowns()" ng-model="properties.WidgetType.PropertyValue" ng-options="widgetType.Value as widgetType.Text for widgetType in widgetTypes" class="form-control">
+                <option value=''>Select</option>
+            </select>
+        </div>
+    </div>
+    <div class="you-tube-list" ng-show="properties.WidgetType.PropertyValue === '0'">
+
+        <div>
+            <label for="playLists">Playlist:</label>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <select id="playLists" ng-disabled="playLists.length <= 0" ng-model="properties.PlayListID.PropertyValue" ng-options="playList.Value as playList.Text for playList in playLists" class="form-control">
+                    <option value=''>No Playlist</option>
+                </select>
+            </div>
+        </div>
+        <div ng-show="!properties.PlayListID.PropertyValue.length">
+            <label for="numberToShow">Number of videos to show:</label>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <input type="text" id="numberToShow" ng-show="!properties.PlayListID.PropertyValue.length" ng-model="properties.NumberToShow.PropertyValue" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="you-tube-single" ng-show="properties.WidgetType.PropertyValue === '1'">
+        <div>
+            <label for="playLists">Video:</label>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <select id="playLists" ng-disabled="videos.length <= 0" ng-model="properties.VideoID.PropertyValue" ng-options="video.Value as video.Text for video in videos" class="form-control">
+                    <option value=''>Select</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
